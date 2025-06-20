@@ -141,10 +141,6 @@ Pour ce dernier exercice, l'application a été améliorée avec une gestion pro
 
 Ces ajouts rendent l'application plus robuste, performante et offrent une meilleure expérience utilisateur, tout en démontrant une architecture de code React moderne et évolutive.
 
-**Démonstration de la fonctionnalité :**
-
-![Demonstration of Pagination and Reload](screenshots/exercise4.gif)
-
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
