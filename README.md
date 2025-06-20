@@ -121,15 +121,29 @@ Pour cet exercice, la logique stateful a été extraite des composants pour cré
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
 
-- [ ] 4.1 Ajouter le bouton de rechargement
-- [ ] 4.2 Implémenter la pagination
-- [ ] 4.3 Documenter votre solution ici
+- [x] 4.1 Ajouter le bouton de rechargement
+- [x] 4.2 Implémenter la pagination
+- [x] 4.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 4 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+
+Pour ce dernier exercice, l'application a été améliorée avec une gestion professionnelle des opérations asynchrones et un système de pagination côté client, en centralisant toute la logique métier dans un hook personnalisé.
+
+1.  **Hook `useProductSearch` et Gestion Asynchrone** :
+    * **Objectif** : Regrouper toute la logique de récupération, de filtrage et d'état des produits dans un seul hook pour simplifier le composant `App`.
+    * **Implémentation** : Le hook `useProductSearch` gère désormais des états pour le chargement (`loading`) et les erreurs (`error`). La fonction `fetchProducts`, enveloppée dans `useCallback`, s'occupe de l'appel API, en mettant à jour l'état `loading` avant et après la requête, et en capturant les erreurs potentielles dans l'état `error`.
+    * **Intégration** : Le composant `App` a été grandement simplifié. Il appelle `useProductSearch` pour obtenir toutes les données et fonctions nécessaires. Il affiche conditionnellement un message de chargement ou une alerte d'erreur. Un bouton "Recharger" a été ajouté, qui appelle simplement la fonction `fetchProducts` exportée par le hook.
+
+2.  **Pagination Côté Client** :
+    * **Objectif** : Diviser la liste de produits en plusieurs pages pour ne pas surcharger l'affichage et améliorer la navigation.
+    * **Implémentation** : La logique de pagination a été intégrée directement dans le hook `useProductSearch`. Il maintient un état pour la page actuelle (`currentPage`) et calcule le nombre total de pages (`totalPages`). En utilisant `slice()`, il ne retourne que la portion de la liste de produits correspondant à la page actuelle.
+    * **Intégration** : Le composant `App` reçoit les produits déjà paginés (`paginatedProducts`) et les fonctions de pagination. Il affiche des boutons "Précédent" et "Suivant" qui appellent `setCurrentPage` pour changer de page. Les boutons sont désactivés dynamiquement lorsqu'on atteint la première ou la dernière page.
+
+Ces ajouts rendent l'application plus robuste, performante et offrent une meilleure expérience utilisateur, tout en démontrant une architecture de code React moderne et évolutive.
+
+**Démonstration de la fonctionnalité :**
+
+![Demonstration of Pagination and Reload](screenshots/exercise4.gif)
 
 ## Rendu
 

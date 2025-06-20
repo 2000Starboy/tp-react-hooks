@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react';
+// src/components/ProductSearch.js
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import useDebounce from '../hooks/useDebounce'; // 1. Import our new hook
 
-const ProductSearch = ({ allProducts, setFilteredProducts }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+// This component now receives the searchTerm and the function to change it
+const ProductSearch = ({ searchTerm, setSearchTerm }) => {
   const { texts } = useLanguage();
   
-  // 2. Use the hook to get a debounced version of the search term
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
-
-  // 3. This useEffect is now MUCH simpler!
-  // It runs only when the *debounced* search term changes.
-  useEffect(() => {
-    if (debouncedSearchTerm === '') {
-      setFilteredProducts(allProducts);
-    } else {
-      const filtered = allProducts.filter(product =>
-        product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    }
-  }, [debouncedSearchTerm, allProducts, setFilteredProducts]); // Depend on the debounced value
-
+  // There are no more hooks or logic inside this component!
+  // It only displays the input and reports changes.
   return (
-    <div className="mb-3">
+    <div className="w-100">
       <input
         type="text"
         className="form-control"
