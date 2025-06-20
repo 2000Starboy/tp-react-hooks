@@ -100,15 +100,23 @@ Ce système permet de centraliser la logique de traduction et de changer la lang
 ### Exercice 3 : Hooks Personnalisés
 #### Objectif : Créer des hooks réutilisables
 
-- [ ] 3.1 Créer le hook useDebounce
-- [ ] 3.2 Créer le hook useLocalStorage
-- [ ] 3.3 Documenter votre solution ici
+- [x] 3.1 Créer le hook useDebounce
+- [x] 3.2 Créer le hook useLocalStorage
+- [x] 3.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 3 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+
+Pour cet exercice, la logique stateful a été extraite des composants pour créer deux hooks personnalisés réutilisables. Cette approche rend le code plus propre, plus lisible et plus modulaire, en suivant les meilleures pratiques de React.
+
+1.  **`useDebounce`**:
+    * **Objectif** : Isoler la logique de "debouncing" de la barre de recherche pour la rendre réutilisable.
+    * **Implémentation** : Le hook `useDebounce` a été créé dans le dossier `src/hooks`. Il prend une valeur (le terme de recherche) et un délai en millisecondes. En utilisant `useState` et `useEffect` en interne, il ne retourne la nouvelle valeur qu'une fois que le délai spécifié est écoulé sans que la valeur n'ait changé.
+    * **Intégration** : Le composant `ProductSearch` a été refactorisé pour utiliser ce hook. Son `useEffect` complexe a été remplacé par un `useEffect` beaucoup plus simple qui dépend directement de la valeur "débouncée" retournée par le hook. Cela a considérablement allégé la logique du composant.
+
+2.  **`useLocalStorage`**:
+    * **Objectif** : Créer un hook qui se comporte comme `useState`, mais qui sauvegarde et récupère automatiquement la valeur dans le Local Storage du navigateur.
+    * **Implémentation** : Le hook `useLocalStorage` prend une clé pour le storage et une valeur initiale. Il initialise son état en essayant de lire la valeur depuis le Local Storage. S'il n'y en a pas, il utilise la valeur initiale. Ensuite, un `useEffect` interne s'assure que toute mise à jour de l'état est immédiatement sauvegardée dans le Local Storage.
+    * **Intégration** : Dans `LanguageContext`, l'appel `useState('fr')` a été remplacé par `useLocalStorage('language', 'fr')`. Ce simple changement a suffi pour rendre la préférence de langue de l'utilisateur persistante, même après un rechargement complet de la page, ce qui améliore grandement l'expérience utilisateur.
 
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
