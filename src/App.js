@@ -1,34 +1,52 @@
-import React, { createContext, useState } from 'react';
-import ProductList from './components/ProductList';
+import React, { useState, useEffect } from 'react';
 import ProductSearch from './components/ProductSearch';
-import ThemeToggle from './components/ThemeToggle';
 
-// TODO: Exercice 2.1 - Créer le LanguageContext
+function App() {
+  
+  const [allProducts, setAllProducts] = useState([]);
+  
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-export const ThemeContext = createContext();
-
-const App = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  // TODO: Exercice 2.2 - Ajouter l'état pour la langue
+  
+  useEffect(() => {
+    
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(data => {
+        setAllProducts(data); 
+        setFilteredProducts(data); 
+      })
+      .catch(error => console.error("Error fetching products:", error));
+  }, []); 
 
   return (
-    <ThemeContext.Provider value={{ isDarkTheme, setIsDarkTheme }}>
-      {/* TODO: Exercice 2.1 - Wrapper avec LanguageContext.Provider */}
-      <div className={`container ${isDarkTheme ? 'bg-dark text-light' : 'bg-light'}`}>
-        <header className="my-4">
-          <h1 className="text-center">Catalogue de Produits</h1>
-          <div className="d-flex justify-content-end gap-2">
-            <ThemeToggle />
-            {/* TODO: Exercice 2.2 - Ajouter le sélecteur de langue */}
+    <div className="container mt-4">
+      <h1 className="mb-4">Liste des Produits</h1>
+      
+      {}
+      <ProductSearch 
+        allProducts={allProducts} 
+        setFilteredProducts={setFilteredProducts} 
+      />
+      
+      <hr />
+      
+      {}
+      <div className="row">
+        {filteredProducts.map(product => (
+          <div className="col-md-4 mb-3" key={product.id}>
+            <div className="card h-100">
+               {}
+              <img src={product.image} className="card-img-top" alt={product.title} style={{ height: '200px', objectFit: 'contain', padding: '10px' }}/>
+              <div className="card-body">
+                <h5 className="card-title" style={{fontSize: '0.9rem'}}>{product.title}</h5>
+              </div>
+            </div>
           </div>
-        </header>
-        <main>
-          <ProductSearch />
-          <ProductList />
-        </main>
+        ))}
       </div>
-    </ThemeContext.Provider>
+    </div>
   );
-};
+}
 
-export default App
+export default App;
