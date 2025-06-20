@@ -51,7 +51,6 @@ Pour chaque exercice :
 - [x] 1.2 Implémenter le debounce sur la recherche
 - [x] 1.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 1 :_
 
 Pour implémenter la recherche en temps réel, j'ai utilisé deux hooks principaux de React : `useState` et `useEffect`.
 
@@ -79,7 +78,6 @@ Cette approche est efficace car elle limite le nombre de re-rendus et de calculs
 - [x] 2.2 Ajouter le sélecteur de langue
 - [x] 2.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 2 :_
 
 Pour gérer les préférences de langue, j'ai utilisé l'API Context de React afin de créer un état global pour l'internationalisation (i18n).
 
@@ -104,7 +102,6 @@ Ce système permet de centraliser la logique de traduction et de changer la lang
 - [x] 3.2 Créer le hook useLocalStorage
 - [x] 3.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 3 :_
 
 Pour cet exercice, la logique stateful a été extraite des composants pour créer deux hooks personnalisés réutilisables. Cette approche rend le code plus propre, plus lisible et plus modulaire, en suivant les meilleures pratiques de React.
 
@@ -125,7 +122,6 @@ Pour cet exercice, la logique stateful a été extraite des composants pour cré
 - [x] 4.2 Implémenter la pagination
 - [x] 4.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 4 :_
 
 Pour ce dernier exercice, l'application a été améliorée avec une gestion professionnelle des opérations asynchrones et un système de pagination côté client, en centralisant toute la logique métier dans un hook personnalisé.
 
@@ -140,6 +136,10 @@ Pour ce dernier exercice, l'application a été améliorée avec une gestion pro
     * **Intégration** : Le composant `App` reçoit les produits déjà paginés (`paginatedProducts`) et les fonctions de pagination. Il affiche des boutons "Précédent" et "Suivant" qui appellent `setCurrentPage` pour changer de page. Les boutons sont désactivés dynamiquement lorsqu'on atteint la première ou la dernière page.
 
 Ces ajouts rendent l'application plus robuste, performante et offrent une meilleure expérience utilisateur, tout en démontrant une architecture de code React moderne et évolutive.
+
+**Démonstration de la fonctionnalité :**
+
+![Demonstration of Pagination and Reload](screenshots/exercise4.png)
 
 ## Rendu
 
